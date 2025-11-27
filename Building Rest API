@@ -1,0 +1,21 @@
+## Spring 
+  - Spring is a comprehensive framework that provides various modules for building different types of applications.
+  - we will use Spring MVC for the web application, Spring Data for data access, and Spring Security for authentication and authorization. 
+  - Setting up a Spring application requires a lot of configuration, and developers need to manually configure various components of the framework to get an application up and running.
+
+## Spring boot
+  - Spring Boot is like a more opinionated version of Spring. It comes with many pre-configured settings and dependencies that are commonly used in Spring applications.
+  - Spring Boot is a more opinionated, streamlined version of Spring that comes with a lot of built-in features to help you get started quickly and easily.
+
+## Spring's Inversion of Control Container
+  - Spring Boot allows you to configure how and when dependencies are provided to your application at runtime. This puts you in control of how your application operates in different scenarios.
+  - Inversion of control is often called dependency injection (DI), though this is not strictly correct. Dependency injection and accompanying frameworks are one way of achieving inversion of control
+  - The org.springframework.context.ApplicationContext interface represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans
+
+## Test Driven Development
+  - we'll write tests before implementing the application code. This is called test driven development (TDD)
+
+##  REST: Representational State Transfer
+  -  The purpose of a RESTful API (Application Programming Interface) is to manage the state of these Resources.
+
+
