@@ -67,3 +67,7 @@
   - The main way to guard against XSS attacks is to properly process all data from external sources (like web forms and URI query strings). 
       In the case of our <script> tag example, attacks can be mitigated by properly escaping the special HTML characters when the string is rendered.
 
+## PUT and PATCH
+  - Both PUT and PATCH can be used for updating, but they work in different ways. Essentially, PUT means “create or replace the complete record”,
+      whereas PATCH means “update only some fields of the existing record” - in other words, a partial update.
+
