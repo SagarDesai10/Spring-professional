@@ -18,4 +18,52 @@
 ##  REST: Representational State Transfer
   -  The purpose of a RESTful API (Application Programming Interface) is to manage the state of these Resources.
 
+## Idempotence and HTTP
+  - An idempotent operation is defined as one which, if performed more than once, results in the same outcome.
+  - GET, PUT, and DELETE are idempotent, whereas POST and PATCH are not.
+
+## Regarding Unordered Queries
+  - Although Spring does provide an “unordered” sorting strategy.
+
+## Spring Data Pagination API
+  - Spring Data provides the PageRequest and Sort classes for pagination. 
+  - Page<CashCard> page2 = cashCardRepository.findAll(
+    PageRequest.of(
+        1,  // page index for the second page - indexing starts at 0
+        10, // page size (the last page might have fewer items)
+        Sort.by(new Sort.Order(Sort.Direction.DESC, "amount"))));
+  - Pagination: Spring can parse out the page and size parameters if you pass a Pageable object to a PagingAndSortingRepository find…()method.
+  - Sorting: Spring can parse out the sort parameter, consisting of the field name and the direction separated by a comma – 
+      but be careful, no space before or after the comma is allowed! Again, this data is part of the Pageable object.
+
+## Spring Security and Authentication
+  - Spring Security implements authentication in the Filter Chain. The Filter Chain is a component of Java web architecture which allows programmers to define a sequence of methods that get called prior to the Controller.
+      Each filter in the chain decides whether to allow request processing to continue, or not.
+
+## Cross-Origin Resource Sharing
+  - Spring Security provides the @CrossOrigin annotation, allowing you to specify a list of allowed sites. Be careful!
+       If you use the annotation without any arguments, it will allow all origins, so bear this in mind!
+
+## Cross-Site Request Forgery
+  - One type of vulnerability is a Cross-Site Request Forgery (CSRF) which is often pronounced “Sea-Surf”, 
+      and also known as Session Riding. Session Riding is actually enabled by Cookies. CSRF attacks happen when a malicious piece of code 
+      sends a request to a server where a user is authenticated. When the server receives the Authentication Cookie, it has no way of knowing 
+      if the victim sent the harmful request unintentionally.
+
+  - To protect against CSRF attacks, you can use a CSRF Token. A CSRF Token is different from an Auth Token because a unique token is generated on each request. 
+      This makes it harder for an outside actor to insert itself into the “conversation” between the client and the server.
+
+  - Thankfully, Spring Security has built-in support for CSRF tokens which is enabled by default.
+
+## Cross-Site Scripting
+  -Perhaps even more dangerous than CSRF vulnerability is Cross-Site Scripting (XSS). This occurs when an attacker is somehow able to “trick” the victim application into executing arbitrary code. 
+      There are many ways to do this. A simple example is saving a string in a database containing a <script> tag, 
+      and then waiting until the string is rendered on a web page, resulting in the script being executed.
+
+  - XSS is potentially more dangerous than CSRF. In CSRF, only actions that a user is authorized to do can be executed. 
+      However in XSS, arbitrary malicious code executes on the client or on the server. Additionally, XSS attacks don’t depend on Authentication. 
+      Rather, XSS attacks depend on security “holes” caused by poor programming practices.
+
+  - The main way to guard against XSS attacks is to properly process all data from external sources (like web forms and URI query strings). 
+      In the case of our <script> tag example, attacks can be mitigated by properly escaping the special HTML characters when the string is rendered.
 
