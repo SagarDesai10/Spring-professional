@@ -1,0 +1,23 @@
+## Beans are available in spring context and manage through spring context
+## ApplicationConfig is also spring bean -It is used to create others
+## ApplicationContext context = SpringApplication.run(ApplicationConfig.class); it also create all component egarly in config class
+## Abc abc = context.getBean("abc"(bean id),ABC.class); OR Abc abc = (ABC) context.getBean("Abc"); OR Abc abc = context.getBean(Abc.class);
+## application context can be created in any env like standalone apk, web app,junit test
+## handle multiple config using @import({AbcConfig.class,XyzConfig.class})
+## default bean scop is singleton eq @Scop("singleton") in this case need to handle multiple threading
+    Abc abc1 = (Abc)context.getBean(("abc");
+    Abc abc2 = (Abc)context.getBean(("abc");
+    abc1 == abc2 // True
+
+    ## How Can we handle multi theading in above case ?
+      - Use Statless or immutable beans
+      - Use synch. (header)
+      - Use differnet scop
+
+  # prototype scop give each time create bew instance @Scop("prototype")
+    Abc abc1 = (Abc)context.getBean(("abc");
+    Abc abc2 = (Abc)context.getBean(("abc");
+    abc1 != abc2 // True
+
+  # @Scop("session") new instance created per user session and destroy with session (web env only)
+  # @Scop("request" new instance creaate per request (web env only)
