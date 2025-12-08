@@ -21,3 +21,28 @@
 
   # @Scop("session") new instance created per user session and destroy with session (web env only)
   # @Scop("request" new instance creaate per request (web env only)
+
+
+
+## Enviroment env => env.getProperty("abc.xyz")  // read value from property file 
+    # env take propery from property source 
+    # need to add @PropertySource("classpath:com/../../app.property") on class
+        * Alternate
+    # you can use @Value("${abc.xyz}")
+
+## If you want to create profile specific bean 
+    # anotate class with @Profile("xyz") so when xyz profile activated then only bean created for following class
+
+    # Activate profile at run time // -DSpring.profile.active = xyz
+    # it also intialize configuration class which not have @Profile annotation
+
+## expretion Lang
+    # @Value("#{systemProperty[abc.xyz]}) // here systemProperty implicit variable provide by spring
+
+    # we have class Abc which have method getKeyGen which return object of KeyGen and we create bean of Abc then 
+        @Bean
+        public Abc abc(){return new Abc();}
+        # @Value("#{abc.keyGen} KeyGen keyGen;
+
+    # propertes are string @Value(#{new Integer(systemProperty[abc.xyz])}) Integer abc;
+    # "${abc.xyz:1000} // here 1000 is default value
