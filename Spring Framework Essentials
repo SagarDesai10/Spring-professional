@@ -54,6 +54,69 @@
         each class and inject the instance of the classes to the IOC container. Another thing the @ComponentScan would do is running the methods with 
         @Bean on it and restore the return object to the Ioc Container as a bean.
 
+   
+Sr. No.	Key	
+    @Bean	
+    @Component
+1 Auto detection
+    It is used to explicitly declare a single bean, rather than letting Spring do it automatically. 
+    If any class is annotated with @Component it will be automatically detect by using classpath scan.
+
+2 Spring Container
+    Bean can be created even class is outside the spring container
+    We can’t create bean if class is outside spring container
+
+3 Class/Method  Level Annotation
+    It is a method level annotation
+    It is a class level annotation
+
+4 @Configuration
+    It works only when class is also annotated with @Configuration
+    It works without @Configuration annotation
+
+5 Use Case
+    We should use @bean, if you want specific implementation based on dynamic condition.
+    We can’t write specific implementation based on dynamic condition
+
+## @Autowired => construction , method , field
+    Autowired default behaviour is Required if  it not found bean at runtime then throw error to avoid that use @Autowired(required = false)
+        Alternative of above is use optional
+        @Autowired
+        public void setDisplay(Optional<Display> display){
+            this.display = display;
+        }
+
+## Constructor Injection vs Setter Injection in Spring
+    Sr. No.	Key	
+        Constructor based Injection	
+        Setter based Injection
+
+1 Circular
+    It doesn’t allow to create circular dependency
+    It doesn’t check the circular dependency
+
+2 Ordering
+    Constructor-based DI fixes the order in which the dependencies need to be injected.
+    Setter-based DI helps us to inject the dependency only when it is required, as opposed to requiring it at construction time.
+
+3 MutilThread Environment  
+    Combining with final fields, constructor injection gives extra safety in multithreaded environment
+    No extra benefit in setter injection
+
+4 Spring Code generation Library
+    Spring code generation library doesn’t support constructor injection so it will not be able to create proxy. It will force you to use no-argument constructor.  
+    Spring framework level code uses setter injection
+
+5 Use Case
+    It should be used for mandatory dependencies
+    It should be used for optional dependencies.
+
+## If There is more then one component with same type (eg: clasess which implement same interface) now you try to autowired that component
+        (eg: interface parent of that two class) it will give error because it found more then one bean with same type
+        in that caase use @Qualifier("beanName")(bean name is simply component name)
+## Every thing egerly intialize if yoou want to lazy it use @Lazy
+
+
 
     
 
