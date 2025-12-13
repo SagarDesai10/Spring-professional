@@ -46,3 +46,25 @@
 
     # propertes are string @Value(#{new Integer(systemProperty[abc.xyz])}) Integer abc;
     # "${abc.xyz:1000} // here 1000 is default value
+
+## Spring supports multiple types annotations such as @Component,@Controller,@service @Repository and @Bean. All theses can be found under the 
+        org.springframework.stereotype package.
+
+    When classes in our application are annotated with any of the above mentioned annotation then during project startup spring scan(using @componentScan) 
+        each class and inject the instance of the classes to the IOC container. Another thing the @ComponentScan would do is running the methods with 
+        @Bean on it and restore the return object to the Ioc Container as a bean.
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
