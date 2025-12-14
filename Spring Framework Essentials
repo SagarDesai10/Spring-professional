@@ -116,6 +116,34 @@ Sr. No.	Key
         in that caase use @Qualifier("beanName")(bean name is simply component name)
 ## Every thing egerly intialize if yoou want to lazy it use @Lazy
 
+## if Class only has default constructor nothing to do
+    if class has one non default constructor spring will use it (autowired not required)
+    if class has more then one non default constructor then spring will use zero arg constructor y default (if exist)
+        or you must anotate with @Autowire the one you want spring to use
+
+## Component scan at startup JAR dep also scan so if application is large it will increase startup time for the issue use component scan like wise
+
+## @postConstruct and @preDestroy takes no parameter and only return void
+    postConstruct => method call at startup after all dep injected
+    preDestroy => method call at shut down prior to destroying the bean instance
+     - this are not spring annotation , it defined by JSR-250 it's part of Java since java 6
+     - it's in javax.annotation pkg supported by spring and java EE
+
+    preDestroy methods call only if application shut down normally
+    contex.close() => Call predestroy methods  jvm shutdown hook automatically close context for you
+
+    Alternativie use @Bean(initMethod = "populateCache" , destroyMethod="clearCache")
+
+## Stereotype annotation @Component => @Service , @Repository , @Controller @RestController , @configuration
+    Custom annotation 
+
+        @Retention(RetentionPolicy.runtime)
+        @Target(ElementType.Type)
+        public @interface annotationName(){
+            String value() default "";
+        }
+
+
 
 
     
