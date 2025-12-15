@@ -143,6 +143,15 @@ Sr. No.	Key
             String value() default "";
         }
 
+## Container Lifecycle => intialization , usage , destruction
+    - intialization : when context created intialize phase is complated 
+        - P1:Load and process bean defination
+            - Bean defination added to BeanFactory(each index under it's id and type)
+            - Special BeanFactoryPostProcessor bean invoked (can modify the defination of any bean)
+            - Application context is beanFactory
+            - you can write your own BeanFactoryPostProcessor by implementing  it 
+        - P2:Perform Bean creation
+
 
 
 
