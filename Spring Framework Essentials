@@ -151,6 +151,25 @@ Sr. No.	Key
             - Application context is beanFactory
             - you can write your own BeanFactoryPostProcessor by implementing  it 
         - P2:Perform Bean creation
+            - find/create it's dependency
+            - each singleton bean egarly intialized(until it's mark as lazy)
+            - each bean go through post processing (BeanPostProcessor)
+
+        - Intializer Extention point
+            - special case of bean post-processing
+                - cause intialize method call (eg @PostConstruct and init-method)
+            - internally spring uses several intializer BPP's
+                - eg CommonAnnotationBeanPostProcessor enables @postconstruct and @resource
+
+        - Bean post processor extention point
+            - Can modify bean instance in any way
+            - powerfull enabling feature
+            - will run againest eveery bean
+            - can modify bean before and after intialization 
+                - beforeIntit runs before intialization
+                - afterIntit runs after intialization
+
+    - Use Phase: 
 
 
 
