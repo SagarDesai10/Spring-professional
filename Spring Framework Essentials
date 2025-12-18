@@ -170,6 +170,53 @@ Sr. No.	Key
                 - afterIntit runs after intialization
 
     - Use Phase: 
+        - case 1: your bean is just bean (bean is just row object simply invoked directly)
+        - case 2: your bean is proxy (if you need some extra behaviour like transaction and etc context return proxy bean)
+            - proxy creation done at intialize process by bean post processor
+            - Spring AOP is proxy based. Spring used two types of proxy strategy one is JDK dynamic proxy and other one is CGLIB proxy.
+            - JDK dynamic proxy is available with the JDK. It can be only proxy by interface so target class needs to implement interface. 
+                In your is implementing one or more interface then spring will automatically use JDK dynamic proxies.
+            - On the other hand, CGLIB is a third party library which spring used for creating proxy. It can create proxy by subclassing. 
+                Spring uses CGLIB for proxy if class is not implementing interface.
+
+            Sr. No.	Key	
+                JDK dynamic proxy	
+                CGLIB proxy
+            
+            1 Basic
+                It can be only proxy by interface so target class needs to implement interface
+                It can create proxy by subclassing
+
+            2 Package
+                It is available with the Java
+                It is a third  library.
+
+            3 Performance
+                It is a bit slow than CGLIB proxy
+                It is faster than JDK dynamic proxy
+
+            4 Final
+                Final class and Final method can not be proxy
+                Final class and Final method can not be proxy
+
+            5 Use case
+                Spring uses JDK proxy when is class is implementing one or more interface
+                Spring uses CGLib proxy when class in not implementing interface
+
+    - destruction phase:(context is close or shut down hook invoked)
+        - Bean clean up
+            - @predestroy execute
+            - bean relesed for garbage collector 
+        - Also happen when any bean goes out of scope (except prototype bean scope)
+
+    - Creating dependency
+        - Bean created after their dependencies you can tell it spring explisitly by @DependsOn()
+
+        - problem
+            - Aim to be sufficiently expressive
+            - return interfaces except (where  multiple interfaces exist , and they are needed for dep injection)
+            - Warning: even if you return impl type (still using interfaces when injecting dep , injecting impl type is brittle
+
 
 
 
