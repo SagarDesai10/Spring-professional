@@ -217,6 +217,38 @@ Sr. No.	Key
             - return interfaces except (where  multiple interfaces exist , and they are needed for dep injection)
             - Warning: even if you return impl type (still using interfaces when injecting dep , injecting impl type is brittle
 
+## AOP : enables modularization of cross-cutting concerns
+        - cross-cutting concerns: Gen functionality that is needed in many places  (eg: logging , tracing,transaction ,security, error handling etc)
+        - impl ccc without modulerization (code tangling , code scattring)
+
+    - Use AOP in your application
+        - impl mainline apk logic (focus on core problem)
+        - write aspect to impl your ccc
+        - wave aspect into your apk
+
+    - Leading AOP Tech
+        - AspetJ (original aop tech)
+            A full bown aspect orianted programming (uses byte code injection)
+
+        - Spring AOP
+            Java based AOP framework with AspectJ integration(uses proxy for aspect weaving)
+
+    - Core AOP Concept
+        - join point(A point in execution of program such as method call or exception throwing)
+        - point cut (A expression that selects one or more join points)
+        - advice (code to be executed at each selected point)
+        - aspect (module that encapsulates pointcuts and advice)
+        - weaving (Technique by which aspects are combined with main code)
+
+        - AOP proxy (An "enhanced" class that stands in place of your original class with extra behaviour added into it 
+
+            * matches one , .. matches one or more
+        - Exp => execution(* com.type.*Service.find*(..)
+            method which start with find have one or more argument which is inside class which ends with service and pkgcom.type with any return type
+            
+
+
+
 
 
 
