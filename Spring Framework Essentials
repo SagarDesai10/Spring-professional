@@ -245,6 +245,19 @@ Sr. No.	Key
             * matches one , .. matches one or more
         - Exp => execution(* com.type.*Service.find*(..)
             method which start with find have one or more argument which is inside class which ends with service and pkgcom.type with any return type
+
+
+        - Advice Type
+            - @Before 
+            - @AfterReturning(if target return successfull)(value = pointcut , returning = execute point cut which have particular return type)
+                - ex , @AfterReturning(pointcut = "* service...(*)" returning = "reward")
+                        public void test(Reward reward){} // you can access this returning (which is method argument(reward)) inside your point cut
+            - @AfterThowing (if target throw exception)
+                ex , @AfterThrowing(value = pointcut, throwing = "e")
+                    public void test(JointPoint jp,DataAccessException e){}
+            - @After - successful return or exception 
+            - @Around after and before target execute
+                - proceed method execute the target
             
 
 
