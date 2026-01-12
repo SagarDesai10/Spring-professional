@@ -258,6 +258,17 @@ Sr. No.	Key
             - @After - successful return or exception 
             - @Around after and before target execute
                 - proceed method execute the target
+
+## Testing
+    - JUnit 5 Framework
+        - It supported by Spring and Spring Boot
+        - Components
+            - JUnit platform (foundation for launching testing framwork on the jvm)
+            - JUnit Jupitor (extention model for writing test and extention in junit 5)
+            - Junit Vintage (A test unit for running Junit 3 and 4 test on platform)
+
+        - @BeforeEach , @BeforeAll , @AfterEach , @AfterAll , @Disabled , @DisplayName , @Nested , @ParametrizedTests
+        - JUnit5 ignores all JUnit4 annotations
             
 
 
