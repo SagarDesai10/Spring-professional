@@ -269,10 +269,24 @@ Sr. No.	Key
 
         - @BeforeEach , @BeforeAll , @AfterEach , @AfterAll , @Disabled , @DisplayName , @Nested , @ParametrizedTests
         - JUnit5 ignores all JUnit4 annotations
-            
+        - Test Context define Application context for your test by using @ContextConfiguration
+        - JUnit 5 has extensible architech via @ExtendWith
+        - Spring extention point is the SpringExtention Class
 
+        - eg for integration test class
+            @ExtendWith(SpringExtention.class) // run with spring support
+            @ContextConfiguration(classes = systemTestConfig.class) // point to system test config file
 
+            public class TransferServiceTest(){
+                @Autowired
+                private TransferService service;
+            }
 
+        - @SpringJUnitConfig composed both annotation @ExtendWith , @ContextConfiguration eg : @SpringJUnitConfig(systemTestConfig.class) // recomanded
+        - @DirtyContext force context to be closed at end of test method , next test get new context use it with @Test annotation 
+        - @TestPropertySource(properties = {"key value pairs"} , location = "location of property file") it has higher precedence than source , use at class lvl
+        - @ActiveProfiles({"test","dev"}) At class lvl or @Profile("dev")
+        - @Sql(scripts={script file path},executionPhase = phase when to excute method or class after successfull script execute or kind of) at class lvl or method lvl , it will execute the script 
 
 
 
