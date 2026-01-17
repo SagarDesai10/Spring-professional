@@ -288,8 +288,38 @@ Sr. No.	Key
         - @ActiveProfiles({"test","dev"}) At class lvl or @Profile("dev")
         - @Sql(scripts={script file path},executionPhase = phase when to excute method or class after successfull script execute or kind of) at class lvl or method lvl , it will execute the script 
 
+- JDBC simplification with JDBC Template
+    - Problem with simple jdbc
+        - lots of code 
+    - Template Design pattern 
+        - hide a lot's boiler plat code 
+        - Spring provide lot's of template class like JdbcTemplate , JmsTemplate,RestTemplate,WebServiceTemplate
 
+        - eg: int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM Users",Integer.class);
+            - Acquisition of connection,participation in transaction,execution of statment ,processing of result set,handling exception all handle by spring
+        - we can pass call back as well eg: jdbcTemplate.query(someSql,callback)
+        - RowMapper(it's callback) Allow to map a row into object
+    - Creating JdbcTemplate
+        - new JdbcTemplate(dataSource);
+        - create once and re-use it 
+        - It's thread safe 
+    - JdbcTemplate can query for 
+        -simple types(int,string,boolean)
+        - Generic maps
+        - Domain objects 
+        - we can insert , update and delete as well by using update method of jdbcTemplate 
+    - working with ResultSet using callback
+        - queryForMap(use for single row) and queryForList(use for multiple rows, which return list of map) methods are used for map result set to map or list
+        - if you want to map result set to domain object then use callback
+        - callback(pass it as callback aragument in jdbctemplate method) 
+            eg: public interface RowMapper<T>{
+                    T mapRow(ResultSet rs,int rowNum) throws SQLException;
+                }
+            eg: template.queryForObject(query,(rs,rowNum) -> new Person(rs.getString("name")));
+            - here queryForObject method is single row , query method for multiple row
 
+        - ResultSetExtractor(it's callback)
+            - it map entire ResultSet at once (so you need to iterate entire resultset)
 
     
 
