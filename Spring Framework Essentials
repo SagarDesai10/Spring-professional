@@ -288,7 +288,7 @@ Sr. No.	Key
         - @ActiveProfiles({"test","dev"}) At class lvl or @Profile("dev")
         - @Sql(scripts={script file path},executionPhase = phase when to excute method or class after successfull script execute or kind of) at class lvl or method lvl , it will execute the script 
 
-- JDBC simplification with JDBC Template
+## JDBC simplification with JDBC Template
     - Problem with simple jdbc
         - lots of code 
     - Template Design pattern 
@@ -320,6 +320,27 @@ Sr. No.	Key
 
         - ResultSetExtractor(it's callback)
             - it map entire ResultSet at once (so you need to iterate entire resultset)
+
+## Transaction management with Spring
+    - spring transation management (2 step)
+        - declaire PlatformTransactionManager bean
+        - declare transactional method
+        - add @EnableTransactionManagement to config class
+    - PlateformTransactionManager id base interface
+        - serveral implemention
+            - DataSourceTM,JmsTM,JpaTM,JtaTM,WebLogicJtaTM,etc
+    - @Transactional annotation for tarnsaction management
+        - javax.transation.transactional annotation in java 
+        - spring also has it's own transactional (so use accordingly)
+
+    - Transaction prapogation
+        - parent method is transactional it's child method also transational so it create new tarnsation or join to older one ? default behaviour is join to older one
+        - there are 7 lvl of propogation
+        - if you want to create new transation @Transactional(prapogation = Prapogation.REQUIRES_NEW) // Prapogation.REQUIRE is default 
+
+        - rollbackFor and noRollbackFor
+            - @Transactional(rollBackFor = {Exception.class},noRollBackFor = {Exception.class})
+            - 
 
     
 
