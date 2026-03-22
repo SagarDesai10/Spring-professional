@@ -1,0 +1,23 @@
+- starter deps pull all basiic require jar files
+- many starter deps are available like for data-jpa, web, batch etc.
+- @EnableAutoConfiguration -> spring boot automatically creates bean of spring config class 
+- @SpringBootConfiguration simply extends @Configuration
+- @SpringBootApplication(scanBasePackages="class path") combine of @ComponentScan("class path"),@EnableAutoConfiguration,@SpringBootConfiguration
+- eg : Example of AutoConfig
+      what you include     At runtime, Spring boot check if     what Spring boot does
+    Embedded DB dep         HSQLDB on classpath                  datasource config
+    Starter jdbc            if datasource configured             JdbcTemplate Configured
+                            if datasource not configured         runtime error
+
+## Packaging 
+  - for build jar gradle assemble or mvn package
+  - it creates .jar (fat jar, all code and dep) and .jar.original (all code)
+  - add maven plugin
+
+## Integration testing
+  - @SptingBootTest(classes = Application.class) it will take same configuration as original application for test env
+  - @SptingBootTest alternative @SpringJunitConfiguration
+  - @SpringBootTest is search for @SpringBootConfiguration and create application context for the test
+
+- Spring intializer for creating spring application and it's open source 
+    - code :- https://github.com/spring-io/initializr
