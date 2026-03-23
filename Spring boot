@@ -21,3 +21,32 @@
 
 - Spring intializer for creating spring application and it's open source 
     - code :- https://github.com/spring-io/initializr
+
+## Define and load property
+      - we write it in property file and use @PropertySource to load it in env default property source is application.property
+      - and use @Value to use it
+      - location of app.prop
+            - classpath root src/resource etc
+      - also have profile specific prop file like prod,dev,test -> app-dev.prop
+      - also use yml file app.yml here space have 2 indentation from parent
+      - multiple profile related data also store in single file by spring.profile property also use --- which indicates separate logic file
+
+      - Precedence
+            highest is devtool and test property because it need to override default and actual
+            lowest is default in application.property
+            1) devtool setting 2) @TestPropertySource and @SpringBootTest 3) command line argument 4) spring apk json 5) servlet config / context
+            6) JNDI attribute from java:comp|env 7) java systeam prop 8) os env var 9)profile specific app.prop 10)app prop 11)@PropertySource file 12) apk default prop
+
+      - map property to your class by using @ConfigurationProperties
+            - @Value("${prop key}") String user;
+            - we need to repeat prefix here like abc.xyz.user , abc.xyz.pass etc to overcome this 
+                  create class which have annotation @ConfigurationProperties(prefix="abc.xyz") which have field like String user , String pass
+                  - for make this happen we need to create a bean of it by
+                        - @EnableConfigurationProperties on apk class
+                        - @ConfigurationPropertyScan on apk or @Component on property class it self
+            - Relexed binding
+                  -  @ConfigurationProperties(prefix="sagar-desai") matches sagarDesai , sagar-desai ,sagar_desai,SAGAR_DESAi
+
+
+
+
