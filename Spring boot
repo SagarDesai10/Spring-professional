@@ -47,6 +47,35 @@
             - Relexed binding
                   -  @ConfigurationProperties(prefix="sagar-desai") matches sagarDesai , sagar-desai ,sagar_desai,SAGAR_DESAi
 
+## AutoConfiguration
+      - enable it by @SpringBootApplication or @EnableAutoConfiguration
+      - how does it works ?
+            - it provide auto config class they are @Configuration classes with conditions
+            - you can create own custom config class
+            - condition includes like 
+                  - do classpath contents include specific classes ?
+                  - Are some properties set ?
+                  - are some beans already configured ?
+      - @Conditional are used to pecify condition 
+      -eg   @Bean
+            @ConditionalOnBean(DataSource.class)    // it only allow to create jdbc template bean if DataSource bean exist in apk context
+            public JdbcTemplate jdbcTemplate(DataSource ds){}
+      - @ConditionalOnMissingBean/Class , @ConditionalOnClass/Property
+      - @Conditional added in spring 4.0 and @Profile is an example of conditional config
+      - what are auto config classes? lets take example of DataSource
+            - auto-config is config class with conditions
+            - pre-written spring configs are like below
+                  - @AutoConfiguration
+                  - public class DataSourceAutoConfiguration(){
+                        @ConditionalOnMissingBean(DataSource.class) // it will only create bean if there is no bean of DataSource
+                        @Import({EmbededDataSourceConfiguration.class})
+                        protected stastic class EmbededDatabaseConfiguration{}
+                   }
+                  // this spring config execute after your custom config executed so if you written bean creation logic of datasource then spring not create it 
+                     other wise spring create it's bean by default
+                  - this config classes you may found in spring-boot-autoconfigure/META-INF/spring jar file 
+                  - inside org.springframework.boot.autoconfigure.AutoConfiguration.imports
+                  - beans you define always take precedence over AutoConfiguration
 
 
 
