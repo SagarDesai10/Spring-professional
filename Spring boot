@@ -77,5 +77,23 @@
                   - inside org.springframework.boot.autoconfigure.AutoConfiguration.imports
                   - beans you define always take precedence over AutoConfiguration
 
-
+## Controlling spring boot auto configuration
+      - by set some of spring boot property
+            - config external data source
+                  - spring.datasource.url/username/password/driver-class-name
+            - logging (works with logback default , log4j,log4j2,java util logging)
+                  - logging.level.classpath = debug
+            - put this property in side application propertyfile 
+            - it read early enough to affect all auto-config possiblities
+            - anything set in this file is easy to override
+      - by explicitly define bean your self so spring boot want be 
+      - explicitly disable some auto configuration
+            - we can do it by annotation like @EnableAutoConfiguration(exclude=DataSourceAutoConfig.class) or 
+            - by property spring.autoconfigure.exclude
+      - change dependencies or their versions
+            - override version (bcoz of bug in current version , complience , company policies)
+            - override dependency version in your pom or gradle file       
+                  - <properties><spring-framework.version>5.3.22</spring-framework.version></properties>
+            - explicitly substitute dependencies
+                  <dependency><artifactid>starter-web</artifactid><exclusions><exclusion><artifactid>starter-tomcat</artifactid></exclusion></exclusions></dependency>
 
